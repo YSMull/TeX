@@ -1,0 +1,60 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{CJK}
+\usepackage{extarrows}
+\usepackage{amsmath}
+\thispagestyle{empty}
+\begin{document}
+\begin{CJK*}{GBK}{song}
+\title{“勘误”和请教\\------\large{to professor D.P Wang}}
+\author{毛煜苏}
+\date{\today}
+\maketitle
+
+\begin{abstract}
+看林源渠、方企勤
+《数学分析解题指南》遇到的一些小错误和一些个人认为值得商榷的地方.
+\end{abstract}
+
+\section{一些小错误}
+\begin{enumerate}
+\item $P_{155}$ \textbf{例5}的第一个式子:\[f(\frac{a+b}{2}+x)=f(\frac{a+b}{2}-x) dx ,\]尾部的那个$dx$应该去掉.然后$P_{156}$关于 \textbf{例5}的第二问的解答
+    \[\int_{0}^\pi \frac{x}{1+cos^2x}dx=\int_{0}^\pi \frac{x-\frac{\pi}{2}}{1+cos^2x}dx+\frac{\pi}{2}\int_{0}^\pi \frac{1}{1+cos^2x}dx\]
+    \[=\pi\int_{0}^\frac{\pi}{2} \frac{1}{1+cos^2x}dx\quad (*)\]
+    $(*)$这一步应该为\[\pi\int_{0}^\frac{\pi}{2} \frac{1}{1+sin^2x}dx.\]
+\item $P_{160}$ \textbf{例10}的\textbf{证法2}的最后一步应该改为：\[\frac{(b-a)^2}{8}(f(\xi_2)-f(\xi_1)) \geq 0\]
+\item $P_{162}$ \textbf{例11}的式(3.14):\[\int_{0}^1 \vert f(x)-f'(x) \vert \geq e^{-1}\]应改为:\[\int_{0}^1\vert f(x)-f'(x)\vert dx \geq e^{-1}\]
+\item $P_{162}$ \textbf{例12}的题目中多了句“存在$\xi\in(a,b)$,使得”,其实他想说：存在$\xi\in(a,b)$,使得：
+\[\int_{a}^b f(x)dx-(b-a)f(\frac{a+b}{2})=\frac{f''(\xi)}{24}(b-a)^3.\]推测是抄别人的时候抄错了.
+\item $P_{167}$ \textbf{例15}的(3.21)的第一排:\[\int_{0}^1 |f''(x)|dx\leq \int_{\alpha}^\beta |f''(x)dx|\geq \Bigg\vert\int_{\alpha}^\beta f''(x)dx\Bigg\vert \]应改为：\[\int_{0}^1 |f''(x)|dx\geq \int_{\alpha}^\beta |f''(x)dx|\geq \Bigg\vert\int_{\alpha}^\beta f''(x)dx\Bigg\vert .\]
+\end{enumerate}
+\section{一些小问题}
+\begin{enumerate}
+\item $P_{161}$ \textbf{例10}\quad \textbf{证法4}有如下式子:
+\[F'(x)=xf(x)-\frac{1}{2}\int_{a}^xf(t)dt-\frac{a+x}{2}f(x)\]
+\[=\frac{x-a}{2}f(x)-\frac{1}{2}\int_{a}^xf(t)dt\quad(*)\]
+\[=\frac{1}{2}\int_{a}^x[f(x)-f(t)]dt \geq^{f(x)\uparrow} 0\quad(**)\]
+从$(*)$到$(**)$以及$(**)$成立的原因不清楚.
+\item $P_{167}$\quad \textbf{例14}“故有”：
+\[\int_{0}^1\vert f(x)\vert dx\leq \max_{x\in (0,1)}\vert f(x)\vert=\vert f(x_M)-f(x_0)\vert \]
+\[=\Big\vert\int_{x_0}^{x_M}f'(x)dx\Big\vert\leq\int_{0}^1\vert f'(x)\vert dx \quad(*)\]
+\[\leq\max\Big\{\int_{0}^1\vert f'(x)\vert dx,\Big\vert\int_{0}^1f(x)dx\Big\vert\Big\} \]
+个人认为$(*)$式少了一些重要步骤，还没发现一本书把这个步骤写出来的:
+\[\Big\vert\int_{x_0}^{x_M}f'(x)dx\Big\vert\]
+\[\leq \Big\vert\int_{x_0}^{x_M}\vert f'(x)\vert dx\Big\vert\footnote{因为我们不知道$x_0$和$x_M$的大小关系，这一点很多书(\textbf{虽然我没看多少书}) 都没有注意}\]
+\[\leq \Big\vert\int_{0}^1\vert f'(x)\vert dx\Big\vert\leq\int_{0}^1\vert f'(x)\vert dx\]
+\item 裴礼文《数学分析中的典型问题与方法(第二版)》$P_{347}$\quad\textbf{例4.3.14}倒数第二排:\\
+已有\[\vert f(x)\vert\leq\int_{0}^1\vert f'(x)\vert dx \]
+取积分知\[\int_{0}^1\vert f(x)\vert dx\leq\int_{0}^1\vert f'(x)\vert dx.\]
+这里这个“\textbf{取积分知}”是个什么原理，也不清楚.
+\end{enumerate}
+\newpage
+\section{后记}
+\begin{itemize}
+\item 与积分相处的这个星期十分快乐和充实，虽然我可能只是囫囵吞枣，或者学习方法存在问题。。。\\
+摸着石头过河嘛，不管那么多了。。。
+\item 我指出的这些错误有的太小儿科了，有的也许是我自己错了。\\
+\item 其实这个文档永远写不完，因为题目永远做不完，书永远买不完。。。\\
+\item 再不开始预习大物，恐怕真的要挂科了。
+\end{itemize}
+\end{CJK*}
+\end{document}
