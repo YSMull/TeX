@@ -1,0 +1,262 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage{CJK}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\newcommand{\mydx}{\;\mathrm{d}x}
+\begin{document}
+\pagestyle{empty}%第一面的页码没有去掉！
+\begin{CJK*}{GBK}{song}
+\title{积分不等式习题初探}
+\author{\small{武汉工程大学,}
+\small{信息与计算科学系,}\\
+\small{\emph{毛煜苏.}}}
+\date{\small{\today}}%2012年8月16日
+\maketitle
+\thispagestyle{empty}
+\begin{abstract}\begin{center}
+关于一些积分不等式习题的研究、总结和推广 \quad\quad\quad\quad
+\end{center}\end{abstract}
+\section{几个基本不等式}
+
+\subsection{Schwarz不等式}%与此相关会有许多的习题！
+若$f(x)$、$g(x)$在$[a,b]$可积，则:
+\[\bigg(\int_a^b f(x)g(x)\mydx \bigg) ^2\leq\bigg(\int_a^bf^2(x)\mydx\bigg)\bigg(\int_a^bg^2(x)\mydx\bigg)\]
+证法略.
+\subsection{Kantorovich不等式}%注意到常用不等式上的推论以及所给的相关简单习题
+若$f(x)$、$\dfrac{1}{f(x)}$在$[a,b]$上可积，且$0<m \leq f(x)\leq M$则:
+\[(b-a)^2\leq\bigg(\int_a^bf(x)\mydx\bigg)\bigg(\int_a^b\frac{1}{f(x)}\mydx\bigg)\leq\frac{(M+m)^2}{4Mm}(b-a)^2\]
+
+\begin{proof}[证明:]
+\begin{align*}
+\int_a^b\frac{(f(x)-m)(f(x)-M)}{f(x)}\mydx
+&= \int_a^b[f(x)-(m+M)+\frac{mM}{f(x)}]\mydx\\
+&= \int_a^bf(x)\mydx-(m+M)(b-a)\\
+&+mM\int_a^b\frac{1}{f(x)}\mydx\leq 0
+\end{align*}
+所以
+\begin{align*}
+\int_a^bf(x)\mydx \int_a^b\frac{1}{f(x)}\mydx &= \bigg(\frac{1}{\sqrt{mM}}\int_a^b f(x)\mydx\bigg)\bigg(  \sqrt{mM}\int_a^b\frac{1}{f(x)}\mydx\bigg)\\
+                              &\leq\frac{1}{4}\bigg(\frac{1}{\sqrt{mM}}\int_a^b f(x)\mydx+\sqrt{mM}\int_a^b\frac{1}{f(x)}\mydx\bigg)^2\\
+                              &\leq\frac{1}{4}\bigg(\frac{(m+M)(b-a)}{\sqrt{mM}}\bigg)^2=\frac{(m+M)^2}{4mM}(b-a)^2
+\end{align*}
+又由$Schwarz$不等式有
+\begin{align*}
+\int_a^b f(x)\mydx \int_a^b \frac{1}{f(x)}\mydx &=\int_a^b \big(\sqrt{f(x)}\big)^2 \mydx\int_a^b\big(\frac{1}{\sqrt{f(x)}}\big)^2\mydx\\
+&\geq \bigg(\int_a^b\sqrt{f(x)}\frac{1}{\sqrt{f(x)}}\mydx\bigg)^2\\
+&=\bigg(\int_a^b\mydx\bigg)^2=(b-a)^2
+\end{align*}
+\end{proof}
+
+\subsection{Iyengar不等式}
+%大学生数学竞赛决赛题，清华大学考研题等，注意到可以用泰勒中值定理或者Schwarz不等式直接证明其较弱形式
+%此不等式的证明待查阅.
+
+若$f(x)$在$(a,b)$可微，且$\vert f'(x)\vert\leq M$，则:
+\begin{equation}
+\bigg\vert\int_a^b f(x)\mydx-\frac{b-a}{2}[f(a)+f(b)]\bigg\vert\leq\frac{(b-a)^2M}{4}-\frac{[f(a)-f(b)]^2}{4M}
+\end{equation}
+
+在证明这个不等式前，先证明其较弱形式：
+\subsubsection{}\label{Iyengar1}
+若$f(x)$在$(a,b)$可微，且$\vert f'(x)\vert\leq M$，则:
+\begin{align}
+\bigg\vert\int_a^b f(x)\mydx-\frac{b-a}{2}[f(a)+f(b)]\bigg\vert\leq\frac{(b-a)^2M}{4}
+\end{align}
+\begin{proof}[证法1(分部积分法)]
+\[\begin{split}
+\int_a^b f(x)\mydx &= \int_a^b f(x)d(x-\frac{a+b}{2})\\
+                &=f(x)(x-\frac{a+b}{2})\big|_a^b-\int_a^b(x-\frac{a+b}{2})f'(x)\mydx
+\end{split}\]
+所以
+
+\begin{align*}
+\bigg\vert \int_a^b f(x)\mydx-\frac{f(a)+f(b)}{2}(b-a)\bigg\vert
+&=\bigg\vert\int_a^b(x-\frac{a+b}{2})f'(x)\mydx\bigg\vert\\
+&\leq\int_a^b \big\vert x-\frac{a+b}{2}\big\vert\big\vert f'(x)\big\vert \mydx \\
+&\leq M\int_a^b\vert x-\frac{a+b}{2}\vert \mydx\\
+&=2M \int_{\frac{a+b}{2}}^b (x-\frac{a+b}{2})\mydx\\
+&=\frac{M(b-a)^2}{4}
+\end{align*}
+\end{proof}
+
+\newpage
+\begin{proof}[证法2（中值定理）]
+据$Lagrange$中值定理知：
+\begin{align*}
+%在align环境中使用\quad，则所有公式一起移动.
+&\begin{cases}
+f(x)=f(a)+f'(\xi_1)(x-a)\quad (a<\xi_1<x)\\
+f(x)=f(b)+f'(\xi_2)(x-b)\quad (x<\xi_2<b)
+\end{cases}
+\\
+\Rightarrow
+&\begin{cases}
+f(a)-M(x-a)\leq f(x)\leq f(a)+M(x-a)\\
+f(b)+M(x-b)\leq f(x)\leq f(b)-M(x-b)
+\end{cases}\\
+\Rightarrow
+&\begin{cases}
+\dfrac{b-a}{2}f(a)-M\dfrac{(b-a)^2}{8} \leq\displaystyle\int_a^\frac{a+b}{2}f(x)\mydx\leq\dfrac{b-a}{2}f(a)+M\dfrac{(b-a)^2}{8}\\
+\dfrac{b-a}{2}f(b)-M\dfrac{(b-a)^2}{8} \leq\displaystyle\int_\frac{a+b}{2}^bf(x)\mydx\leq\dfrac{b-a}{2}f(b)+M\dfrac{(b-a)^2}{8}
+\end{cases}\\
+\Rightarrow &\bigg \vert\int_a^bf(x)\mydx-\frac{f(a)+f(b)}{2}(b-a)\bigg\vert\leq\frac{M(b-a)^2}{4}
+\end{align*}
+\end{proof}
+
+
+\begin{flushleft}
+\textbf{注释1}:将区间分为两个部分分别积分，这里不一定要取中点为分段点,我们有：
+\[\begin{cases}
+f(a)(c-a)-\dfrac{M(c-a)^2}{2}\leq\displaystyle\int_a^cf(x)\mydx\leq f(a)(c-a)+\dfrac{M(c-a)^2}{2}\\
+f(b)(b-c)-\dfrac{M(b-c)^2}{2}\leq\;\displaystyle\int_c^bf(x)\mydx\leq f(b)(b-c)+\dfrac{M(b-c)^2}{2}
+\end{cases}\]
+其中$c\in(a,b)$
+\begin{equation}\Rightarrow \bigg\vert\int_a^bf(x)\mydx+c\big[f(b)-f(a)\big]+af(a)-bf(b)\bigg\vert\leq\frac{M}{2}\bigg[(c-a)^2+(b-c)^2\bigg]\end{equation}
+若$f(a)=f(b)=\lambda$，则：
+\begin{align*}
+\bigg\vert\int_a^bf(x)\mydx-(b-a)\lambda\bigg\vert
+&\leq\frac{M}{2}\bigg[(c-a)^2+(b-c)^2\bigg]\\
+&= \frac{M}{2}\bigg[2\bigg(c-\frac{a+b}{2}\bigg)^2+\frac{(b-a)^2}{2}\bigg]\quad\bigg(\forall c\in(a,b)\bigg)
+\end{align*}
+特别地，当$c=\dfrac{a+b}{2}$时，有：
+\begin{equation}\bigg\vert\int_a^bf(x)\mydx-(b-a)\lambda\bigg\vert\leq\frac{M}{4}(b-a)^2\end{equation}
+此时$M$的系数$\dfrac{(b-a)^2}{4}$是最好的\footnote{或说不等式是可以取等的},若不加限制条件$f(a)=f(b)$,直接对$(3)$取$c=\dfrac{a+b}{2}$ 所得的不等式$(2)$，右边的$\dfrac{(b-a)^2M}{4}$ 不一定是满足左边形式的最好上界.至于\textbf{为什么}要分为两个区间分别积分，我们在后面说明.\\
+\textbf{注释2}:事实上，不等式$(2)$不能取等.\\
+法一中，不等式
+\[\bigg\vert\int_a^b(x-\frac{a+b}{2})f'(x)\mydx\bigg\vert\leq\int_a^b \big\vert x-\frac{a+b}{2}\big\vert\big\vert f'(x)\big\vert \mydx\]
+无法取等号，因为$(x-\dfrac{a+b}{2})$在$(a,b)$上变换号.\\
+法二中，
+\[\begin{split}
+f(x)&=f(a)\pm M(x-a),x\in(a,c)\\
+f(x)&=f(b)\mp M(x-b),x\in(c,b)
+\end{split}\]
+二式不可能同时取等，否则$f(x)$ 在$(a,b)$ 不可微，与条件矛盾，因此分别取积分后相加所得不等式不能取等.\\
+\textbf{注释3}:从法一和法二可以看到，沟通$f(x)$和$f'(x)$，可以用分部积分或中值定理.%这句话没必要
+\end{flushleft}
+
+
+\subsubsection{(对$(4)$的推广)}\label{Iyengar2}
+其实这个不等式常用一些吧。。。
+若$f(x)$在$(a,b)$可微，且$\vert f'(x)\vert\leq M$，则:
+\[\bigg\vert\int_a^b f(x)\mydx-\frac{b-a}{2}[f(a)+f(b)]\bigg\vert\leq\frac{(b-a)^2M}{4}-\frac{[f(a)-f(b)]^2}{4M}\]
+其实一般题目也用不到上头的，用的是这个不等式
+\[\bigg\vert\int_a^b f(x)\mydx-\frac{b-a}{2}[f(a)+f(b)]\bigg\vert\leq\frac{(b-a)^2M}{4}\]
+在\(f(a)=f(b)\)时取等若函数$f(x)$不恒等于0，在$[a,b]$上连续，在$(a,b)$内可导，当$x\in(a,b)$时，有$m\leq f'(x)\leq M$, 而且$f(a)=f(b)=\lambda$, 则必有:\[\bigg\vert\int_a^bf(x)\mydx-(b-a)\lambda\bigg\vert\leq\frac{-mM(b-a)^2}{2(M-m)}\]
+\begin{proof}[证明:]
+据拉格朗日中值定理有：
+\begin{align*}
+%我这个地方用的语法还不错，对齐了cases结构
+&\begin{cases}
+f(x)=\lambda+f'(\xi_1)(x-a)\quad (a<\xi_1<x)\\
+f(x)=\lambda+f'(\xi_2)(x-b)\quad (x<\xi_2<b)
+\end{cases}\\
+\Rightarrow
+&\begin{cases}
+m(x-a)\leq ( f(x)-\lambda )\leq M(x-a)\\
+M(x-b)\leq ( f(x)-\lambda )\leq m(x-b)
+\end{cases} \\
+\Rightarrow
+&\begin{cases}
+m\displaystyle\int_a^c(x-a)\mydx\leq\displaystyle\int_a^c(f(x)-\lambda)\mydx\leq M\displaystyle\int_a^c(x-a)\mydx\\
+M\displaystyle\int_a^c(x-b)\mydx\leq\displaystyle\int_c^b(f(x)-\lambda)\mydx\leq m\displaystyle\int_a^c(x-b)\mydx
+\end{cases}
+\end{align*}
+两式相加得
+\[-\frac{M(c-b)^2}{2}+\frac{m(c-a)^2}{2}\leq\int_a^b\big(f(x)-\lambda\big)\mydx\leq\frac{M(c-a)^2}{2}-\frac{m(b-c)^2}{2}\]
+整理得:
+\begin{align*}
+&\int_a^b\big(f(x)-\lambda\big)\mydx\geq\frac{Mm(b-a)^2}{2(M-m)}-\frac{M-m}{2}\bigg(c-\frac{Mb-ma}{M-m}\bigg)^2,\\
+&\int_a^b\big(f(x)-\lambda\big)\mydx\leq\frac{-Mm(b-a)^2}{2(M-m)}+\frac{M-m}{2}\bigg(c-\frac{Ma-mb}{M-m}\bigg)^2.\\
+&\bigg(\forall c\in(a,b)\bigg)
+\end{align*}
+故
+\[\bigg\vert\int_a^bf(x)\mydx-(b-a)\lambda\bigg\vert\leq\frac{-Mm(b-a)^2}{2(M-m)}\]
+\end{proof}
+
+\begin{flushleft}
+\textbf{注释1:}注意到，将题干中的\[\bigg\vert\int_a^bf(x)\mydx-(b-a)\lambda\bigg\vert\]改写为\[\bigg\vert\int_a^b\big(f(x)-\lambda \big)\mydx\bigg\vert\]令\[g(x)=f(x)-\lambda\]则原题化为：
+若函数$g(x)$不恒等于0，在$[a,b]$上连续，在$(a,b)$内可导，当$x\in(a,b)$时，有$m\leq g'(x)\leq M$, 而且$g(a)=g(b)=0$, 则必有:\[\bigg\vert\int_a^bg(x)\mydx\bigg\vert\leq\frac{-mM(b-a)^2}{2(M-m)}\]事实上在证明中已经自然的将问题化为上述形式，几何意义是将原被积函数的端点平移到$x$轴上,对问题进行了\textbf{必要}的转化.
+\\
+\textbf{注释2:}通过对\ref{Iyengar1}和\ref{Iyengar2}的证明，我们可以看到，通过中值定理所达到的目的是将被积函数放缩为(分段的)线性函数，通过线性函数在区间的积分值来\textbf{夹逼}\footnote{可以看到，这种夹逼只能对将区间端点平移到x轴之后的形式运用}原被积函数的积分值，从而得到不等式(见图$1$). 分段点$c$ 的选取具有任意性，但是满足不等式的最好的$c$值的选取，是通过对一般表达式配方或运用不等式得到的，但只要认清这一方法的本质关注其几何意义，则可以免去求$c$ 的繁琐过程，\textbf{最好的$c$，一定是直线的交点},如若不然，所得到的积分值与原被积表达式的积分值的误差必将增大!(见图$2$)这也是要分为两个区间来积分的原因，不然误差将会达到最大.(见图$3$、$4$)\\
+比如考察:
+\[\int_a^b\big(f(x)-\lambda\big)\mydx\leq\frac{M(c-a)^2}{2}-\frac{m(b-c)^2}{2}\]
+直接令$M(x-a)=m(x-b)$，解得$x=\dfrac{Ma-mb}{M-m}$,则$c$的值就得出了.
+\\
+\begin{center}
+\includegraphics[height=7cm]{int1.png}\quad\quad\quad\quad\quad\quad\quad\quad
+\includegraphics[height=7cm]{int2.png}\\
+图$1$
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+图$2$
+\includegraphics[height=7cm]{int4.png}\quad\quad\quad\quad\quad\quad\quad\quad
+\includegraphics[height=7cm]{int3.png}\\
+图$3$
+\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad
+图$4$
+\end{center}
+
+\textbf{注释3:}从\ref{Iyengar1}可以看到，只有添加了条件$f(a)=f(b)$后，所采用的方法才能够得到不等式的不可改进的上界，但是，$1.3$的$Iyengar$不等式拥有一个比$1.3.1$小的上界，并且没有条件$f(a)=f(b)$,而我们又不能够从$(3)$式中得到任何进展\footnote{这种代数上的没有进展性，从几何上也可以直观反映，因为在$f(a)\neq f(b)$时,通过平移，只能使其中一个端点落在$x$ 轴上,而另外一个端点不在$x$ 轴上,这样就无法通过导函数的有界性简单构造线性函数去夹逼}, 于是要解决这个问题，就得寻求新的方法!
+\end{flushleft}
+\subsubsection{Iyengar不等式的证明}
+若$f(x)$在$(a,b)$可微，且$\vert f'(x)\vert\leq M$，则:
+\begin{equation*}
+\bigg\vert\int_a^b f(x)\mydx-\frac{b-a}{2}[f(a)+f(b)]\bigg\vert\leq\frac{(b-a)^2M}{4}-\frac{[f(a)-f(b)]^2}{4M}
+\end{equation*}
+
+\begin{proof}[证明:]
+作辅助函数\[F(x)=f(x)-(x-a)k-f(a)\]
+其中$k=\dfrac{f(b)-f(a)}{b-a}$,则有\[F(a)=F(b),\text{且}-M-k\leq F'(x)=f'(x)-k\leq M-k\]
+所以
+\begin{align*}
+\bigg\vert\int_a^bF(x)\mydx\bigg\vert&\leq\frac{-(-M-k)(M-k)(b-a)^2}{2[(M-k)-(-M-k)]}\\
+&=\frac{(M^2-k^2)(b-a)^2}{4M}\\
+&=\frac{M(b-a)^2}{4}-\frac{\big[k(b-a)\big]^2}{4M}\\
+&=\frac{M(b-a)^2}{4}-\frac{\big[f(a)-f(b)\big]^2}{4M}
+\end{align*}
+\end{proof}
+
+\begin{flushleft}
+\textbf{注释1:}原题条件改为$m \leq f'(x)\leq M$,则$Iyengar$不等式可推广为
+\[\bigg\vert\int_a^b f(x)\mydx-\frac{b-a}{2}[f(a)+f(b)]\bigg\vert\leq\frac{-(m-k)(M-k)(b-a)^2}{2(M-m)}\]\\
+\textbf{注释2:}这个方法是怎么想到的呢？辅助函数式如何构造的呢？其实是\textbf{辅助多项式}在起作用.\\
+构造多项式
+\[P(x)=kx+t\]使
+\begin{align*}
+\begin{cases}
+P(a)&=f(a)\\
+P(b)&=f(b)
+\end{cases}
+\end{align*}
+解得
+\begin{align*}
+\begin{cases}
+k &=\dfrac{f(a)-f(b)}{a-b}\\
+t &=ak-f(a)\quad\big(\text{或}bk-f(b)\big)
+\end{cases}
+\end{align*}
+作辅助函数
+\[F(x)=f(x)-P(x)\]
+则显然有
+\[F(a)=F(b)=0,F'(x)\in(-M-k,M-k)\]
+这样，$F(x)$就满足了$\textbf{1.3.2}$的所有条件,带入结论即得证.\\
+\textbf{注释3:}这种手法在由$Rolle$定理证明$Lagrange$中值定理的时候就采用过.可以说，辅助多项式的方法在解题中运用十分广泛.
+
+\begin{center}
+\includegraphics[height=9cm]{int5.png}\\
+图$5$
+\end{center}
+\end{flushleft}%话说flushleft里头还可以嵌套center...?
+
+\end{CJK*}
+\end{document}
+--------------------------------------------------------------------------------------------
+1一些基本不等式
+2运用不等式解题
+3杂题
+4注意非变上限积分的常数性可以直接在积分号前加$\int_0^1$ !%有习题 还有推广！
+5目前 沟通一阶导数与积分的方法有  分部积分法  泰勒中值定理  微分中值定理  Iyengar不等式
+6二阶导数的不等式有待继续做题积累。
+7明天去把 周敏强上二阶导数的和一些其它不等式的做一下，然后把一些已经推广过的不等式打到电脑里面去。
+8记得把所有的积分符号都改正规一点儿，按照包老师的方法改。
+--------------------------------------------------------------------------------------------
